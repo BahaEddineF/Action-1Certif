@@ -8,11 +8,21 @@ jobs:
         - name: Checkout Repo
           uses: actions/checkout@v4
 
-        - name: welcome message
-          run: echo " Hello first github action job "
+        - name: list read file
+          run: |
+            echo " Hello first github action job "
+            ls -ltra
+            cat README.md
 
-        - name: list files
-          run: ls
+        - name: Generate ASCII artwork  # 💬 Nom du step (juste pour l'affichage)
+          run: cowsay -f dragon "RUN for cover , i'am dragon .. GRGR " >> dragon.txt  
+                # 🐉 Utilise 'cowsay' avec le style dragon pour générer un dessin ASCII
+                # 🗣️ Le dragon dit : "RUN for cover , i'am dragon .. GRGR "
+                # 📁 Le résultat est ajouté dans le fichier 'dragon.txt'
+
+
+        # - name: list files
+        #   run: ls
         
-        - name: Read file
-          run: cat README.md
+        # - name: Read file
+        #   run: cat README.md

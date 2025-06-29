@@ -11,10 +11,10 @@ jobs:
         - name: list files
           run: ls -ltra
 
-        - name: execute Shell Script
-          run: | 
-            chmod +x asciiscript.sh
-            ./asciiscript.sh
+        - name: Run ASCII script
+          run: |
+            chmod +x .github/workflows/asciiscript.sh
+            .github/workflows/asciiscript.sh
 
         
         

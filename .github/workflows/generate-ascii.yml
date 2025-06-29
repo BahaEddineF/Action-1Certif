@@ -2,7 +2,7 @@ name: Generate ASCII Artwork
 
 on: push
 jobs:
-    first_job:
+    ascii_job:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout Repo

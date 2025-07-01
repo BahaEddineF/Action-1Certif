@@ -34,7 +34,7 @@ jobs:
     needs: test_job2
     runs-on: ubuntu-latest
     steps:
-      - name: Upload the dragon text file
+      - name: download the dragon text file
         uses: actions/download-artifact@v4
         with:
             name: dragon text file

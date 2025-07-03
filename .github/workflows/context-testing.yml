@@ -1,26 +1,40 @@
-name: Context testing 
+# 🎯 Workflow name shown in GitHub Actions tab
+name: Context testing
+
+# ▶️ Trigger this workflow when code is pushed
 on: push
 
 jobs:
   dump_contexts_to_log:
+    # 🖥️ Run this job on a virtual Ubuntu machine
     runs-on: ubuntu-latest
+
     steps:
+      # 🔍 Print GitHub-related info (repo name, event type, etc.)
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+
+      # 🧱 Print info about this job (name, status, etc.)
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
+
+      # 📋 Print info about all steps (like if steps succeeded or failed)
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
+
+      # 🖥️ Show info about the runner (like OS, architecture)
       - name: Dump runner context
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
+
+      # 🔐 Show available secrets (only names, not real values)
       - name: Dump secret context
         env:
           SECRET_CONTEXT: ${{ toJson(secrets) }}

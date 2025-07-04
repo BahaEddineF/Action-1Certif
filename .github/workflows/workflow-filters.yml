@@ -1,35 +1,28 @@
-name: Exploring Workflow Filters and Activities
+name: Workflow Filters and Activities
 
 on:
-  # 🔘 Allows manual run from GitHub interface
   workflow_dispatch:
-
-  # ⏰ Scheduled run (currently commented out)
   # schedule:
-  #   - cron: "*/59 * * * *"  # Every 59 minutes
+  #   - cron: "*/59 * * * *"
 
-  # Trigger on push, except for the branches listed below
   push:
-    branches: 
-        - main                    # Ignore push on main branch
-        - '!feature/*'           # ⚠️ Tries to ignore feature/* using '!', but this syntax is incorrect
-    # branches-ignore:
-    #   - feature/*              # Correct way to ignore branches starting with 'feature/'
-    #   - test/**                # Correct way to ignore branches under 'test/'
-
-  # 🔄 Trigger on pull request open or close on main branch, but ignore README.md changes
-  pull_request: 
-    types:
-        - opened                 # Trigger when  Pull Request is opened
-        - closed                 # Trigger when  Pull Request is closed
-    paths-ignore:
-        - README.md              # Ignore if only README.md is changed
     branches:
-        - main                   # Only trigger if  Pull Request targets the main branch
+      - main
+    branches-ignore:
+      - feature/*     #  ignoring pushing to any branch name starting with feature
+    #   - test/**       # test/ui/index, test/checkout/payment/
+
+  pull_request:
+    types:
+      - opened
+      - closed
+    paths-ignore:
+      - README.md       # workflow will only run when a pull request that includes a change on any file other than README.md
+    branches:
+      - main            # configures your workflow to only run on pull requests that target specific branches.
 
 jobs:
   hello:
-    runs-on: ubuntu-latest       # Use Ubuntu runner
+    runs-on: ubuntu-latest
     steps:
       - run: echo this workflow/job/step is executed for event type - ${{ github.event_name }}
-        # 🖨️ Print which event (push, PR, etc.) triggered the workflow
